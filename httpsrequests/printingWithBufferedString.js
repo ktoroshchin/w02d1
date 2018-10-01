@@ -8,7 +8,7 @@ function getAndPrintHTML() {
   var output = "";
 
   var requestOptions = {
-    host: 'example.com',
+    host: 'sytantris.github.io',
     path: '/http-examples/step1.html'
   };
 
@@ -29,7 +29,7 @@ function getAndPrintHTML() {
     });
 
     response.on('end', function () {
-      console.log('Response stream complete: ', output + "\n");
+      console.log('Response stream complete: ', output);
     })
   });
 };

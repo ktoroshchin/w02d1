@@ -1,16 +1,12 @@
 // while https is built-in to Node, it is a module, so it must be required
-var https = require('https');
 
 // the host can be thought of as the domain name you want to read from,
 // and the path is the resource - '/' is the root path, but if you wanted to read a
 // particular resource (like '/login/index.html'), that would be defined in the path
-function getAndPrintHTMLChunks () {
 
-
-  var requestOptions = {
-    host: 'sytantris.github.io',
-    path: '/http-examples/step1.html'
-  };
+function getAndPrintHTML(requestOptions) {
+  var https = require('https');
+  var output = "";
 
   https.get(requestOptions, function (response) {
 
@@ -19,15 +15,15 @@ function getAndPrintHTMLChunks () {
 
     // the callback is invoked when a `data` chunk is received
     response.on('data', function (data) {
-      console.log('Chunk Received. Length:', data + "\n");
-    });
-
-    // the callback is invoked when all of the data has been received
-    // (the `end` of the stream)
-    response.on('error', function() {
-      console.log('Error reading data');
+      output += data;
+      console.log(output);
     });
   });
-};
+}
 
-getAndPrintHTMLChunks();
+
+var requestOptions = {
+  host: 'sytantris.github.io',
+  path: '/http-examples/step3.html'
+};
+getAndPrintHTML(requestOptions);
